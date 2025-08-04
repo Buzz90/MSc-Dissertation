@@ -1,5 +1,5 @@
 llm_config = {
-    "model": "gemma",
+    "model": "vicuna",
     "api_type": "ollama",
     "base_url": "http://localhost:11434/v1",
     "api_key": None,

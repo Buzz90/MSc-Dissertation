@@ -1,0 +1,6 @@
+{
+    "generator_model" : "vicuna",
+    "discriminator_model" : "vicuna",
+    "iterations" : 10,
+    "csv_log_file" : "pipeline_log.csv"
+}

