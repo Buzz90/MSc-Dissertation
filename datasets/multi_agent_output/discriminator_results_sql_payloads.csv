@@ -1,0 +1,3 @@
+payload,status,elapsed,classification,reasoning
+id'/**/OR/**/'a'>'a'#,200,0.03,No Effect,"The payload does not contain any valid SQL syntax and the target application is returning a valid HTML response, indicating that no SQL injection occurred."
+ID%27 || %27A%27=%27A%27--,200,0.02,No Effect,"The payload does not contain any valid SQL syntax and the target application is returning a valid HTML page, indicating that the injection attempt was unsuccessful."
