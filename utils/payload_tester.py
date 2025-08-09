@@ -1,8 +1,7 @@
 import requests
 import time
 
-def test_payload(payload, disc_time):
-    url = "http://localhost:8080/index.php?page=login.php"
+def test_payload(payload, disc_time, url, return_http_response=True):
     session = requests.Session()
     start_time = time.time()
 
