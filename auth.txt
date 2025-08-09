@@ -1,0 +1,1 @@
+I have written permission to test http://localhost:8080/index.php?page=login.php by me, ticket ABC-123.

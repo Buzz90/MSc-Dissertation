@@ -2,6 +2,7 @@ import requests
 import csv
 import time
 import json
+import argparse
 from autogen import AssistantAgent
 from utils.llm_config import llm_config
 
@@ -15,7 +16,7 @@ Do not hallucinate or make up information.
 You will be given a SQL injection payload and the HTTP response from the target application.
 Your task is to classify the payload based on its effectiveness against the target application.
 If the payload is unsuccessful, ALWAYS classify it as "No Effect" or "Invalid Payload", do not use any other classification.
-If the payload is successful, point out a critical vulnerability in the response and how to further exploit it.
+If the payload is successful, ALWAYS point out a critical vulnerability based on http response and how to further exploit it.
 Always respond strictly as JSON with keys:
 - classification: one of ["Login Bypass","Error-based SQL Injection","Time-based SQL Injection","No Effect","Invalid Payload"]
 - reasoning: one short sentence explaining your decision but be very specific. Make sure that reasoning you provide is relevant to the payload and response. Make sure that reasoning can be used to train a generator agent for SQLi payload generation.
@@ -99,4 +100,7 @@ def run_payloads(payload_file, output_csv, limit=None):
     print(f"Results saved to {output_csv}")
 
 if __name__ == "__main__":
-    run_payloads("datasets/raw/sql_payloads.txt", "datasets/multi_agent_output/discriminator_results_sql_payloads.csv", limit=100)
+    start_time = time.time()
+    run_payloads("datasets/raw/sql_payloads.txt", "datasets/multi_agent_output/discriminator(gemma)_results_sql_payloads.csv", limit=27)
+    end_time = time.time() - start_time
+    print(f"Discriminator testing completed 27 payloads in {end_time:.2f} seconds.")

