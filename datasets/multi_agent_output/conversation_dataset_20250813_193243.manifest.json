@@ -1,8 +1,8 @@
 {
-  "run_id": "9f66aea0-8d0f-459b-98b7-69e6846f27c1",
-  "created": "2025-08-09T13:23:05Z",
+  "run_id": "2a20ce4c-c6aa-4913-b111-e25328354418",
+  "created": "2025-08-13T18:32:43Z",
   "url": "http://localhost:8080/index.php?page=login.php",
-  "iterations": 15,
+  "iterations": 25,
   "payloads_per_iteration": 5,
   "seed_mode": "improved",
   "seed_csv": "datasets/multi_agent_output/discriminator(2)_results_sql_payloads.csv",

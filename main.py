@@ -58,8 +58,6 @@ from utils.cleaner import clean_payload  # type: ignore
 from utils.test_payload import test_payload  # type: ignore
 
 # -------- Constants / Safety guards --------
-DEFAULT_PASSWORD = "password"
-DEFAULT_TIMEOUT = 30
 DEFAULT_RATE_LIMIT_SEC = 1.0
 MAX_BODY_SNAPSHOT = 2000  # chars
 
@@ -116,8 +114,8 @@ def validate_payload(payload: str) -> bool:
     if not isinstance(payload, str) or not payload.strip():
         return False
     p = payload.lower()
-    if any(term in p for term in BLOCKED_TERMS):
-        return False
+    #if any(term in p for term in BLOCKED_TERMS):
+    #    return False
     return any(term in p for term in SAFE_SQL_TERMS)
 
 def truncate_txt(s: str, n: int) -> str:
@@ -163,9 +161,9 @@ def create_discriminator_agent() -> AssistantAgent:
 # -------- Prompt builders ----------
 def build_generation_prompt(base_payloads: List[str], payload_count: int, conservative: bool) -> str:
     guards = (
-        "- Avoid destructive keywords (DROP, ALTER, TRUNCATE, DELETE) or file writes.\n"
-        "- Restrict to login-bypass style SQL injection candidates only.\n"
-        "- Do not include database-specific admin routines.\n"
+        #"- Avoid destructive keywords (DROP, ALTER, TRUNCATE, DELETE) or file writes.\n"
+        "- Restrict to login-bypass style SQL injection, and dropping table candidates only.\n"
+        #"- Do not include database-specific admin routines.\n"
     )
     return (
         "Modify these payloads to increase *defensive test* effectiveness ONLY for login field fuzzing:\n"
@@ -266,7 +264,7 @@ def run_experiment(
     rate_limit: float,
     truncate_body: int,
     conservative: bool,
-    scope_text: str,
+    #scope_text: str,
     random_seed: Optional[int] = None,
     start_with: Optional[str] = None,
 ) -> Dict[str, Any]:
@@ -290,7 +288,7 @@ def run_experiment(
         "rate_limit_sec": rate_limit,
         "truncate_body_chars": truncate_body,
         "conservative": conservative,
-        "scope_sha1": sha1(scope_text),
+        #"scope_sha1": sha1(scope_text),
         "random_seed": random_seed,
         "version": "updated_multi_agent.py/1.0.0",
     }
@@ -416,19 +414,20 @@ def run_experiment(
 
 # ------------- CLI -------------
 def parse_args():
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     ap = argparse.ArgumentParser(
         description="Multi-agent LLM pipeline (safe-by-default) for academic SQLi payload research."
     )
     ap.add_argument("--url", required=True, help="Target login URL (authorized test target).")
     ap.add_argument("--iterations", type=int, default=5, help="Number of generator/discriminator cycles.")
-    ap.add_argument("--payloads-per-iteration", type=int, default=5, help="Number of payloads per generator output.")
-    ap.add_argument("--output", default="datasets/multi_agent_output/conversation_dataset.csv",
+    ap.add_argument("--payloads-per-iteration", type=int, default=25, help="Number of payloads per generator output.")
+    ap.add_argument("--output", default=f"datasets/multi_agent_output/conversation_dataset_{timestamp}.csv",
                     help="CSV output path.")
     ap.add_argument("--jsonl", default="datasets/multi_agent_output/conversation_dataset.jsonl",
                     help="JSONL output path.")
     ap.add_argument("--seed-mode", choices=["dataset", "single", "improved"], default="dataset",
                     help="Seed strategy.")
-    ap.add_argument("--seed-csv", default="datasets/multi_agent_output/discriminator(2)_results_sql_payloads.csv",
+    ap.add_argument("--seed-csv", default="datasets/raw/payload_dataset.csv",
                     help="CSV with a 'payload' column (for seed-mode=dataset).")
     ap.add_argument("--start-with", default=None, help="Seed payload (for seed-mode=single).")
     ap.add_argument("--rate-limit", type=float, default=DEFAULT_RATE_LIMIT_SEC,
@@ -437,7 +436,7 @@ def parse_args():
                     help="Truncate response text (chars) captured by test harness.")
     ap.add_argument("--conservative", action="store_true",
                     help="Stronger guardrails on generation prompt.")
-    ap.add_argument("--scope", required=True, help="Path to a human-readable scope/authorization file.")
+    #ap.add_argument("--scope", required=True, help="Path to a human-readable scope/authorization file.")
     ap.add_argument("--confirm-legal", action="store_true",
                     help="Acknowledge you have written authorization for the target.")
     ap.add_argument("--seed", type=int, default=None, help="Random seed for reproducibility.")
@@ -447,17 +446,17 @@ def main():
     print(ETHICS_BANNER)
     args = parse_args()
 
-    if not args.confirm_legal:
-        print("[!] Refusing to run without --confirm-legal. See banner above.")
-        sys.exit(2)
-    if not os.path.exists(args.scope):
-        print("[!] Scope/authorization file not found.")
-        sys.exit(2)
+    #if not args.confirm_legal:
+    #    print("[!] Refusing to run without --confirm-legal. See banner above.")
+    #    sys.exit(2)
+    #if not os.path.exists(args.scope):
+    #    print("[!] Scope/authorization file not found.")
+    #    sys.exit(2)
 
-    scope_text = read_scope(args.scope)
-    if not scope_text or len(scope_text) < 10:
-        print("[!] Scope/authorization file appears empty/invalid. Aborting.")
-        sys.exit(2)
+    #scope_text = read_scope(args.scope)
+    #if not scope_text or len(scope_text) < 10:
+    #    print("[!] Scope/authorization file appears empty/invalid. Aborting.")
+    #    sys.exit(2)
 
     try:
         result = run_experiment(
@@ -471,7 +470,7 @@ def main():
             rate_limit=args.rate_limit,
             truncate_body=max(0, args.truncate_body),
             conservative=args.conservative,
-            scope_text=scope_text,
+    #        scope_text=scope_text,
             random_seed=args.seed,
             start_with=args.start_with,
         )

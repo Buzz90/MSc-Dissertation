@@ -1,0 +1,14 @@
+{
+  "run_id": "cc82c1c6-757b-490c-8ce7-71c0667b03e1",
+  "created": "2025-08-13T18:49:16Z",
+  "url": "http://localhost:8080/index.php?page=login.php",
+  "iterations": 25,
+  "payloads_per_iteration": 25,
+  "seed_mode": "improved",
+  "seed_csv": "datasets/raw/payload_dataset.csv",
+  "rate_limit_sec": 1.0,
+  "truncate_body_chars": 2000,
+  "conservative": false,
+  "random_seed": null,
+  "version": "updated_multi_agent.py/1.0.0"
+}

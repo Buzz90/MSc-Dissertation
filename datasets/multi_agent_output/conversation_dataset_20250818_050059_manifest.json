@@ -1,0 +1,15 @@
+{
+  "run_id": "5d98b546-7933-4f42-93ad-fd73358464dc",
+  "created_at": "2025-08-18T04:00:59Z",
+  "url": "http://localhost:8080/index.php?page=login.php",
+  "iterations": 25,
+  "payloads_per_iteration": 5,
+  "seed_mode": "improved",
+  "seed_csv": "improved_payload",
+  "rate_limit": 1.0,
+  "truncate_body": 2000,
+  "conservative": false,
+  "random_seed": null,
+  "sqli_method": "union_based",
+  "version": "resilient-improved-mode+method"
+}
